@@ -7,6 +7,7 @@
 - The repository is open to contribution from all interested developers. Kindly send us Pull Requests with explanation as to what changes you have done.
 - Also, you can write to us by opening an [Issue](https://github.com/Tilak-Shenoy/Hospital-Management-System/issues) and also solve a current issue if possible.
 - This project is an improved version of the Cloud-EHR project by [salman-bhai](https://github.com/salman-bhai).
+- This repository is created by [Tilak-Shenoy](https://github.com/Tilak-Shenoy)
 
 ## Documentation
 - The app consists of four tables named as:
@@ -43,4 +44,4 @@
 
 
 ## License
-- The software is registered under the [MIT License](https://github.com/)
+- The software is registered under the [MIT License](https://github.com/Tilak-Shenoy/Hospital-Management-System/blob/master/LICENSE)
