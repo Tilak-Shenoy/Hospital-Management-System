@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "673575762928",
+    "firebase_url": "https://cloud-ehr-acb56.firebaseio.com",
+    "project_id": "cloud-ehr-acb56",
+    "storage_bucket": "cloud-ehr-acb56.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673575762928:android:de1d52993f25f02b",
+        "android_client_info": {
+          "package_name": "com.example.android.hospitalmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673575762928-9ug20kd4s9nmpmns20u73rkf8n2sj9je.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.hospitalmanagement",
+            "certificate_hash": "482a31357ef686f7640f78493ac6019cf3228c4f"
+          }
+        },
+        {
+          "client_id": "673575762928-6b067gcjrss2kml590r9tjo8ngdqgpn3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.hospitalmanagement",
+            "certificate_hash": "8a9274d4d2e000a3015daf8fae755efb6732da38"
+          }
+        },
+        {
+          "client_id": "673575762928-m4njsiptcpe4u8tg7c93kc50crd45nev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9PZRV_8wF7-Fexz1PjaRwc8FMWZl4gFU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673575762928-m4njsiptcpe4u8tg7c93kc50crd45nev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
