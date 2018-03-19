@@ -27,15 +27,6 @@
             android:orientation="horizontal">
 
             <com.google.android.gms.common.SignInButton
-                android:id="@+id/doc_sign_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_weight="1"
-                android:onClick="signIn"
-                android:padding="12dp" />
-
-            <com.google.android.gms.common.SignInButton
                 android:id="@+id/pat_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,25 +46,6 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="0dp"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="36dp"
-                android:layout_weight="1"
-                android:elevation="1dp"
-                android:text="Doctor Sign up"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="36dp"
-                android:layout_weight="1"
-                android:text="Patient Sign up"
-                android:textSize="16sp" />
 
         </LinearLayout>
 

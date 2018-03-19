@@ -39,11 +39,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
+
+            <EditText
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"/>
+                android:hint="Password"
+                android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <LinearLayout
@@ -51,16 +53,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginBottom="16dp">
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_signin_doctor"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:padding="12dp"
-                android:text="Sign In As Doctor"
-                android:layout_weight="1"
-                android:layout_marginRight="8dp"/>
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_signin_patient"
