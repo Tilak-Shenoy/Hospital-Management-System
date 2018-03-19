@@ -55,22 +55,7 @@ public class SignUpActivity extends AppCompatActivity implements GoogleApiClient
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        // Set the dimensions of the sign-in button.
-        SignInButton docSignUp = (SignInButton) findViewById(R.id.doc_sign_up);
-        docSignUp.setSize(docSignUp.SIZE_STANDARD);
 
-        docSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.doc_sign_up:
-                        person=0;
-                        docSignIn();
-                        break;
-                }
-            }
-
-    });
 
         SignInButton patSignUp=(SignInButton) findViewById(R.id.pat_sign_up);
         patSignUp.setSize(patSignUp.SIZE_STANDARD);
@@ -102,10 +87,6 @@ public class SignUpActivity extends AppCompatActivity implements GoogleApiClient
 
 
 
-    private void docSignIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
 
 
 

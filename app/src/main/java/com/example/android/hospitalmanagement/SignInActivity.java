@@ -18,14 +18,6 @@ public class SignInActivity extends AppCompatActivity {
 
         DetailsDbHelper db=new DetailsDbHelper(this);
 
-        Button sign_in_doctor = (Button)findViewById(R.id.btn_signin_doctor);
-        sign_in_doctor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent doctor_intent = new Intent(SignInActivity.this, DoctorActivity.class);
-                startActivity(doctor_intent);
-            }
-        });
 
         Button sign_in_patient = (Button)findViewById(R.id.btn_signin_patient);
         sign_in_patient.setOnClickListener(new View.OnClickListener() {
