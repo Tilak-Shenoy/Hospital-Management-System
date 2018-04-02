@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<TextView
+        android:id="@+id/test_3"
+        android:layout_width="173dp"
+        android:layout_height="36dp"
+        android:text="Test 3"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="296dp" />
+
+    <TextView
+        android:id="@+id/test_2"
+        android:layout_width="173dp"
+        android:layout_height="36dp"
+        android:text="Test 2"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="193dp" />
+
+    <ImageButton
+        android:id="@+id/test3_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="288dp" />
+
+    <ImageButton
+        android:id="@+id/test1_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="103dp" />
+
+    <EditText
+        android:id="@+id/Patient_ID"
+        android:layout_width="193dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Enter Patient ID"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageButton
+        android:id="@+id/test2_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="300dp"
+        tools:layout_editor_absoluteY="193dp" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPLOAD"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="393dp" />
+
+    <TextView
+        android:id="@+id/test_1"
+        android:layout_width="173dp"
+        android:layout_height="36dp"
+        android:text="Test 1"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="103dp" />
+</android.support.constraint.ConstraintLayout>
