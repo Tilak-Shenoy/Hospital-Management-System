@@ -47,7 +47,7 @@ public class PatientActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     private TabLayout tabLayout;
-    String email;
+    String email,name;
     List<Appointment> appt;
 
     @Override
@@ -59,8 +59,10 @@ public class PatientActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         appt = new ArrayList<>();
-        email=getIntent().getExtras().getString("email");
-
+        Intent i = getIntent();
+        email=i.getExtras().getString("email");
+        name=i.getExtras().getString("name");
+        Toast.makeText(this,"Welcome "+name+" "+email,Toast.LENGTH_LONG).show();
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mFirebaseDatabase = mFirebaseInstance.getReference("appointments");
 
