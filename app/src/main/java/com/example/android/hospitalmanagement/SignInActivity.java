@@ -66,17 +66,28 @@ public class SignInActivity extends AppCompatActivity {
         email = emailText.getText().toString();
         password = passText.getText().toString();
 
+        Pemail=email;
+
         Intent nextPage;
         if(  email.equals("pharma@hosp.com") & password.equals("pharma") ){
-            nextPage = new Intent(SignInActivity.this, pharmaMain.class);
+            nextPage = new Intent(SignInActivity.this, BookAppointment.class);
+            nextPage.putExtra("email",Pemail);
+            Pname="pharma";
+            nextPage.putExtra("name",Pname);
             startActivity(nextPage);
         }
         else if(  email.equals("admin@hosp.com") & password.equals("admin") ){
             nextPage = new Intent(SignInActivity.this, AdminActivity.class);
+            nextPage.putExtra("email",Pemail);
+            Pname="admin";
+            nextPage.putExtra("name",Pname);
             startActivity(nextPage);
         }
         else if( email.equals("drstrange@hosp.com") & password.equals( "marvel")){
-            nextPage = new Intent(SignInActivity.this,DoctorActivity.class);
+            nextPage = new Intent(SignInActivity.this,DoctorMain.class);
+            nextPage.putExtra("email",Pemail);
+            Pname="Dr Strange";
+            nextPage.putExtra("name",Pname);
             startActivity(nextPage);
         }
         else{
@@ -100,9 +111,10 @@ public class SignInActivity extends AppCompatActivity {
                                 p.setPatientEmail(Pemail);
                                 p.setPatientname(Pname);
                                 Intent nextPage;
-                                nextPage = new Intent(SignInActivity.this,PatientActivity.class);
+                                nextPage = new Intent(SignInActivity.this,patientMain.class);
                                 nextPage.putExtra("email",Pemail);
                                 nextPage.putExtra("name",Pname);
+                                Toast.makeText(getApplicationContext(),"Welcome "+Pname+" ",Toast.LENGTH_LONG).show();
                                 startActivity(nextPage);
                                 break;
                             }

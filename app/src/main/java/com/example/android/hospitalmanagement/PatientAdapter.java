@@ -12,13 +12,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by harsh on 3/4/17.
- */
 
-public class DoctorAdapter extends ArrayAdapter<Appointment> {
+public class PatientAdapter extends ArrayAdapter<Appointment> {
 
-    public DoctorAdapter(Context context, ArrayList<Appointment> Appt)
+    public PatientAdapter(Context context, ArrayList<Appointment> Appt)
     {
         super(context,0,Appt);
 

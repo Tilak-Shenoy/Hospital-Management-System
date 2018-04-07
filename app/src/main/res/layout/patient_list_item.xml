@@ -47,7 +47,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/doctorEmail"
+                    android:id="@+id/dept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
@@ -55,7 +55,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/doctorHospital"
+                    android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"

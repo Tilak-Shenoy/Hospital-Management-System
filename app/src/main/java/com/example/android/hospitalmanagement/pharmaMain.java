@@ -54,7 +54,11 @@ public class pharmaMain extends AppCompatActivity {
                     startActivity(nextPage);
 
                 }
+                else{
+                    Toast.makeText(getApplicationContext(), "Patient ", Toast.LENGTH_LONG).show();
+                }
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {

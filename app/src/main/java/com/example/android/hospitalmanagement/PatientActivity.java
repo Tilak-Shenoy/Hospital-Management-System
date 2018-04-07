@@ -1,5 +1,6 @@
 package com.example.android.hospitalmanagement;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -47,60 +48,37 @@ public class PatientActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
     private TabLayout tabLayout;
+
+
+
+
     String email,name;
-    List<Appointment> appt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ListView list=(ListView) findViewById(R.id.container);
 
-        appt = new ArrayList<>();
         Intent i = getIntent();
-        email=i.getExtras().getString("email");
-        name=i.getExtras().getString("name");
-        Toast.makeText(this,"Welcome "+name+" "+email,Toast.LENGTH_LONG).show();
-        mFirebaseInstance = FirebaseDatabase.getInstance();
-        mFirebaseDatabase = mFirebaseInstance.getReference("appointments");
-
-        mFirebaseDatabase.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-
-                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
-                        Appointment app = issue.getValue(Appointment.class);
-                        Log.d("asd",app.getDescrip());
-                        appt.add(app);
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-                Log.d("true","false");
-
-            }
-        });
-
+        ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
+        PatientAdapter adapter=new PatientAdapter(this,appointments);
+        list.setAdapter(adapter);
 
     }
 
 
 
-    public void onClick(View v){
-        Intent i = new Intent(PatientActivity.this, BookAppointment.class);
-        startActivity(i);
-    }
 
     @Override
     public void onBackPressed() {
         finish();
         System.exit(0);
     }
+
+
 }
+
+
