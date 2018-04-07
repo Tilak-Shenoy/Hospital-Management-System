@@ -40,5 +40,6 @@
         android:layout_marginLeft="64dp"
         android:layout_marginRight="64dp"
         android:layout_marginTop="45dp"
+        android:onClick="onClick"
         android:text="Approve Medication" />
 </RelativeLayout>

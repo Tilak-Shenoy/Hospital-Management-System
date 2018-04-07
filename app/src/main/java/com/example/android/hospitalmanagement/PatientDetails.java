@@ -98,15 +98,15 @@ public class PatientDetails extends AppCompatActivity {
 
     private  void submitDetails(){
         String patname = patName.getText().toString();
-        SignUpActivity signUp=new SignUpActivity();
-        String patEmail=signUp.email;
+      //  SignUpActivity signUp=new SignUpActivity();
+       // String patEmail=signUp.email;
         String patPassword=pass.getText().toString();
         String patmobileNo = mobileNo.getText().toString();
         String patAddress = address.getText().toString();
         String patInsurance = insurance.getText().toString();
         String patFileNum=fileNumber.getText().toString();
 
-        insertPatient(patname,patEmail,patPassword,imageUrl, patmobileNo,patAddress,patInsurance,patFileNum);
+        insertPatient(patname,"hello@gmail.com",patPassword,imageUrl, patmobileNo,patAddress,patInsurance,patFileNum);
 
     }
 

@@ -60,9 +60,9 @@ public class DoctorDetails extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_details);
-        SignUpActivity s=new SignUpActivity();
+        //SignUpActivity s=new SignUpActivity();
         name = (EditText) findViewById(R.id.name);
-        name.setText(s.userName);
+       // name.setText(s.userName);
 
         //Set up button to import pictures from gallery or take a picture from camera
         buttonSelect = (Button) findViewById(R.id.propic);
@@ -100,15 +100,15 @@ public class DoctorDetails extends AppCompatActivity {
 
     private  void submitDetails(){
 
-        SignUpActivity signUp=new SignUpActivity();
+//        SignUpActivity signUp=new SignUpActivity();
         String docname = name.getText().toString();
-        String docemail=signUp.getEmail();
+  //      String docemail=signUp.getEmail();
         String docPass=pass.getText().toString();
         String docdepartment = department.getText().toString();
         String docmobileNo = mobileNo.getText().toString();
         String dochospital = hospital.getText().toString();
 
-        insertDoctor(docname,docemail,docPass,imageUrl,docmobileNo,dochospital,docdepartment);
+        insertDoctor(docname,"doc@gmail.com",docPass,imageUrl,docmobileNo,dochospital,docdepartment);
 
         Log.i("pic",imageUrl+"----------------");
 

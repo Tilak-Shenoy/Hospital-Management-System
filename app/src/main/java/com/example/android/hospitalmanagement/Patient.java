@@ -1,36 +1,32 @@
 package com.example.android.hospitalmanagement;
 
-/**
- * Created by harsh on 3/4/17.
- */
 
 public class Patient {
-    private String patientname;
-    private String patientdept;
-    private String patienthospital;
-    private int patientimage;
-    private String patientEmail;
+    private String name;
+    private String password;
+    private String email;
 
-    public Patient(String name, String hospital,int image,String email){
+    public Patient(){}
 
-        patientname=name;
-        patienthospital=hospital;
-        patientimage=image;
-        patientEmail=email;
+    public Patient(String name, String email,String password){
+
+        this.name = name;
+        this.email=email;
+        this.password=password;
     }
 
-    public Patient(String name,String dept, String hospital,int image,String email)
-    {
-        patientname=name;
-        patientdept=dept;
-        patienthospital=hospital;
-        patientimage=image;
-        patientEmail=email;
-    }
+    public String getPatientname() {return name;}
+    public String getPatientEmail(){return  email;}
+    public String getPatientPass(){return  password;}
 
-    public String getPatientname() {return patientname;}
-    public String getPatientdept() {return patientdept;}
-    public String getPatienthospital() {return patienthospital;}
-    public int getPatientimage() {return patientimage;}
-    public String getPatientEmail(){return  patientEmail;}
+
+    public void setPatientname(String patientname){
+        this.name=patientname;
+    }
+    public void setPass(String pass){
+        this.password=pass;
+    }
+    public void setPatientEmail(String patientEmail){
+        this.email=patientEmail;
+    }
 }

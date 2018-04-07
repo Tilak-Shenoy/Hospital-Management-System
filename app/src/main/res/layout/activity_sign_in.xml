@@ -58,13 +58,12 @@
                 android:id="@+id/btn_signin_patient"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
 
-                android:padding="12dp"
-                android:text="Sign In As Patient"
                 android:layout_weight="1"
-                />
+                android:padding="12dp"
+                android:text="Sign In" />
         </LinearLayout>
 
         <TextView android:id="@+id/link_signup"

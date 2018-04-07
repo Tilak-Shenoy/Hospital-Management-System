@@ -8,6 +8,7 @@ public class DocMedication extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doc_medication);
+        setContentView(R.layout.activity_doc_prescription);
+        getSupportActionBar().setTitle("Doc Medictaion Page");
     }
 }

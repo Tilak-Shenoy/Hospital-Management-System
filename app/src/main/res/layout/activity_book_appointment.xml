@@ -12,46 +12,74 @@
         android:id="@+id/docName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:layout_margin="16dp"
-        android:hint="Doctor's Name"
+        android:hint="Doctor Name"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/hospName"
+        android:id="@+id/dept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:layout_margin="16dp"
-        android:hint="Hospital Name"
+        android:hint="Department"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Date"
+        android:inputType="text" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:inputType="date" />
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="4:00 PM" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="5:00 PM" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="6:00 PM" />
+    </RadioGroup>
+
+
 
     <EditText
-        android:id="@+id/time"
+        android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Time"
         android:layout_margin="16dp"
-        android:inputType="time" />
-
-    <EditText
-        android:id="@+id/descriotion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_margin="16dp"
         android:hint="Describe your illness"
         android:inputType="textMultiLine" />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
@@ -63,6 +91,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="fill_vertical"
+            android:onClick="onClick"
             android:text="Book Appointment" />
     </RelativeLayout>
 </LinearLayout>

@@ -1,20 +1,23 @@
 package com.example.android.hospitalmanagement;
 
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
-import android.widget.TextView;
+import java.util.ArrayList;
 
 public class DoctorActivity extends AppCompatActivity {
 
@@ -26,27 +29,53 @@ public class DoctorActivity extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private PlaceholderFragment.SectionsPagerAdapter mSectionsPagerAdapter;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor);
-
+        getSupportActionBar().setTitle("Dr Strange");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new PlaceholderFragment.SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        tabLayout=(TabLayout) findViewById(R.id.tabs);
+        tabLayout.addTab(tabLayout.newTab().setText("Past Appointments"));
+        tabLayout.addTab(tabLayout.newTab().setText("Scheduled Appointments"));
+
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
 
     }
 
@@ -54,7 +83,7 @@ public class DoctorActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_doctor, menu);
+        getMenuInflater().inflate(R.menu.menu_patient, menu);
         return true;
     }
 
@@ -99,54 +128,62 @@ public class DoctorActivity extends AppCompatActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = null;
+        public ListView onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView;
+            ListView listView = null;
 
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
-                rootView = inflater.inflate(R.layout.fragment_doctor_schedule, container, false);
-                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            } else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
-                rootView = inflater.inflate(R.layout.fragment_doctor_account, container, false);
-                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                rootView = inflater.inflate(R.layout.fragment_patient_appointment, container, false);
+                listView= (ListView) rootView.findViewById(R.id.list);
+                //PatientAdapter adapter=new PatientAdapter(getContext(),new ArrayList<Patient>());
+               // listView.setAdapter(adapter);
+
+
             }
-            return rootView;
+            else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
+                rootView = inflater.inflate(R.layout.fragment_patient_doctor_list, container, false);
+                listView = (ListView) rootView.findViewById(R.id.list);
+              //  PatientAdapter adapter = new PatientAdapter(getContext(), new ArrayList<Patient>());
+               // listView.setAdapter(adapter);
+            }
+
+            return listView;
+        }
+    }
+
+    /**
+     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    public static class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
         }
 
-        /**
-         * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-         * one of the sections/tabs/pages.
-         */
-        public static class SectionsPagerAdapter extends FragmentPagerAdapter {
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+            return PlaceholderFragment.newInstance(position +1);
+        }
 
-            public SectionsPagerAdapter(FragmentManager fm) {
-                super(fm);
-            }
 
-            @Override
-            public Fragment getItem(int position) {
-                // getItem is called to instantiate the fragment for the given page.
-                // Return a PlaceholderFragment (defined as a static inner class below).
-                return PlaceholderFragment.newInstance(position + 1);
-            }
+        @Override
+        public int getCount() {
+            // Show 3 total pages.
+            return 2;
+        }
 
-            @Override
-            public int getCount() {
-                // Show 2 total pages.
-                return 0;
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "SECTION 1";
+                case 1:
+                    return "SECTION 2";
             }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                switch (position) {
-                    case 0:
-                        return "This is the first page";
-                    case 1:
-                        return "This is the second page";
-                }
-                return null;
-            }
+            return null;
         }
     }
 }

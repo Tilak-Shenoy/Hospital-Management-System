@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.android.hospitalmanagement.Pharmacy">
 
-</android.support.constraint.ConstraintLayout>
+    <ListView
+        android:id="@+id/drugList"
+        android:layout_width="match_parent"
+        android:layout_height="431dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:gravity="center_vertical"
+        android:text="Check Out"
+        tools:layout_editor_absoluteX="148dp"
+        android:onClick="checkOut"
+        tools:layout_editor_absoluteY="481dp" />
+</LinearLayout>
