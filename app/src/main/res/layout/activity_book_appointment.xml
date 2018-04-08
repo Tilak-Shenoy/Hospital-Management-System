@@ -111,4 +111,5 @@
         android:layout_marginTop="38dp"
         android:onClick="onClick"
         android:text="Book Appointment" />
+
 </RelativeLayout>

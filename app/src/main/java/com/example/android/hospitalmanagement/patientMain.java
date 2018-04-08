@@ -58,20 +58,21 @@ public class patientMain extends AppCompatActivity {
                         doctorName = (String) issue.child("name").getValue();
                         timeSlot = (long) issue.child("time").getValue();
                         dept = (String) issue.child("dept").getValue();
-                        Date curr = Calendar.getInstance().getTime();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+                        Date curr = new Date();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
                         Date cdate = null;
-                        String cu = df.format(curr);
+                        /*String cu = df.format(curr);
                         try {
                             curr=df.parse(cu);
                         } catch (ParseException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                         try {
                             cdate = df.parse(date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+                        Toast.makeText(getApplicationContext(),"Current="+curr.toString()+"cDate="+cdate.toString(),Toast.LENGTH_LONG);
                         if(cdate.before(curr)){
                             Appointment app = new Appointment(doctorName,name,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
@@ -121,14 +122,14 @@ public class patientMain extends AppCompatActivity {
                         doctorName = (String) issue.child("name").getValue();
                         timeSlot = (long) issue.child("time").getValue();
                         dept = (String) issue.child("dept").getValue();
-                        Date curr = Calendar.getInstance().getTime();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
-                        String cu = df.format(curr);
+                        Date curr = new Date();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                        /*String cu = df.format(curr);
                         try {
                             curr=df.parse(cu);
                         } catch (ParseException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                         Date cdate = null;
 
                         try {
@@ -136,7 +137,9 @@ public class patientMain extends AppCompatActivity {
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+                        Log.d("Test","Cur"+curr.toString()+"c"+cdate.toString());
                         if(cdate.after(curr)){
+                            Toast.makeText(getApplicationContext(),"Current="+curr.toString()+"cDate="+cdate.toString(),Toast.LENGTH_LONG);
                             Appointment app = new Appointment(doctorName,name,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
                             appt.add(app);
