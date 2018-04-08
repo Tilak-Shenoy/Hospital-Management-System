@@ -37,6 +37,7 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        getSupportActionBar().setTitle("Fortis Health Care");
 
         DetailsDbHelper db=new DetailsDbHelper(this);
         emailText = (EditText) findViewById(R.id.input_email);

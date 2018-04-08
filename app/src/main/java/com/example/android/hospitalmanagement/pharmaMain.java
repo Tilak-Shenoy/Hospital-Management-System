@@ -26,6 +26,7 @@ public class pharmaMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharma_main);
+        getSupportActionBar().setTitle("Fortis Pharmacy");
         email = (EditText) findViewById(R.id.email);
     }
 

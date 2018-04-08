@@ -20,7 +20,7 @@ public class Records extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_records);
 
-        getSupportActionBar().setTitle("Pharmacy Assistant Profile");
+        getSupportActionBar().setTitle("List of Doctors");
         Intent i = getIntent();
         ArrayList<String> test = i.getStringArrayListExtra("arr");
 
