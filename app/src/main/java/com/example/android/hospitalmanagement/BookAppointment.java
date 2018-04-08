@@ -86,7 +86,7 @@ public class BookAppointment extends AppCompatActivity implements AdapterView.On
         Dept = dept.getText().toString();
         desc = descrip.getText().toString();
         appDate = date.getText().toString();
-        Appointment app = new Appointment(dName,Pname,appDate,Time,Dept,desc,Pname);
+        Appointment app = new Appointment(dName,Pname,appDate,Time,Dept,desc,Pemail);
         mFirebaseInstance = FirebaseDatabase.getInstance();
         // get reference to 'users' node
         Log.d("email","fhajk");

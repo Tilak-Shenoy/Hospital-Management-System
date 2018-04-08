@@ -70,7 +70,7 @@ public class SignInActivity extends AppCompatActivity {
 
         Intent nextPage;
         if(  email.equals("pharma@hosp.com") & password.equals("pharma") ){
-            nextPage = new Intent(SignInActivity.this, BookAppointment.class);
+            nextPage = new Intent(SignInActivity.this, pharmaMain.class);
             nextPage.putExtra("email",Pemail);
             Pname="pharma";
             nextPage.putExtra("name",Pname);
@@ -84,7 +84,7 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(nextPage);
         }
         else if( email.substring(0,2).equals("dr")){
-            Log.d("docjkfjklsdjfksjdflkjsldf","sdjfklhd");
+
             mFirebaseInstance = FirebaseDatabase.getInstance();
             mFirebaseDatabase = mFirebaseInstance.getReference("doctors");
 
@@ -166,7 +166,7 @@ public class SignInActivity extends AppCompatActivity {
                    }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Profile NOT found. Please Register", Toast.LENGTH_LONG).show();
                     }
                 }
 

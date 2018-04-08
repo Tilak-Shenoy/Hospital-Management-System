@@ -55,7 +55,7 @@ public class pharmaMain extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Patient ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "No Medication found for the patient", Toast.LENGTH_LONG).show();
                 }
             }
 
