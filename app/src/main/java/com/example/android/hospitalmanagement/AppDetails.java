@@ -158,8 +158,14 @@ public class AppDetails extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if(flag.equals("patient")){
         Intent intent=new Intent(AppDetails.this,PatientActivity.class);
         intent.putExtra("Appointments",appointments);
+    }
+    else{
+            Intent intent=new Intent(AppDetails.this,DoctorActivity.class);
+            intent.putExtra("Appointments",appointments);
+        }
     }
 
 }

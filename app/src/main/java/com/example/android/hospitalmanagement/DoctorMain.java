@@ -150,4 +150,9 @@ public class DoctorMain extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new  Intent(DoctorMain.this,SignInActivity.class));
+    }
 }

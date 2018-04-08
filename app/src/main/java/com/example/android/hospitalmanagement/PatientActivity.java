@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -65,28 +66,37 @@ public class PatientActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         final ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
-        PatientAdapter adapter=new PatientAdapter(this,appointments);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(PatientActivity.this,AppDetails.class);
-                intent.putExtra("Appointments",appointments);
-                intent.putExtra("app",(Appointment) appointments.get(i));
-                intent.putExtra("flag","patient");
-                startActivity(intent);
-            }
-        });
+        Log.d("LIST",appointments.toString());
+        if(!appointments.isEmpty()) {
+            PatientAdapter adapter = new PatientAdapter(this, appointments);
+            list.setAdapter(adapter);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(PatientActivity.this, AppDetails.class);
+                    intent.putExtra("Appointments", appointments);
+                    intent.putExtra("app", (Appointment) appointments.get(i));
+                    intent.putExtra("flag", "patient");
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+            TextView no=(TextView) findViewById(R.id.No);
+            no.setVisibility(View.VISIBLE);
+        }
     }
-
-
 
 
     @Override
     public void onBackPressed() {
-        finish();
-        System.exit(0);
+        Intent i=new Intent(PatientActivity.this,patientMain.class);
+        i.putExtra("name",name);
+        i.putExtra("email",email);
+        startActivity(i);
     }
+
+
 
 
 }
