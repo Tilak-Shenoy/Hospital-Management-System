@@ -84,7 +84,7 @@ public class SignInActivity extends AppCompatActivity {
             nextPage.putExtra("name",Pname);
             startActivity(nextPage);
         }
-        else if( email.substring(0,2).equals("dr")){
+        else if( email.substring(0,2).equals("dr")) {
 
             mFirebaseInstance = FirebaseDatabase.getInstance();
             mFirebaseDatabase = mFirebaseInstance.getReference("doctors");
@@ -95,29 +95,28 @@ public class SignInActivity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         int b = 0;
-                        for (DataSnapshot issue: dataSnapshot.getChildren()) {
+                        for (DataSnapshot issue : dataSnapshot.getChildren()) {
                             Pname = (String) issue.child("docName").getValue();
                             Pemail = (String) issue.child("email").getValue();
                             Ppass = (String) issue.child("password").getValue();
-                            if(password.equals(Ppass)){
+                            if (password.equals(Ppass)) {
                                 b = 1;
                                 Intent nextPage;
-                                nextPage = new Intent(SignInActivity.this,DoctorMain.class);
-                                nextPage.putExtra("email",Pemail);
-                                nextPage.putExtra("name",Pname);
-                                Toast.makeText(getApplicationContext(),"Welcome "+Pname+" ",Toast.LENGTH_LONG).show();
+                                nextPage = new Intent(SignInActivity.this, DoctorMain.class);
+                                nextPage.putExtra("email", Pemail);
+                                nextPage.putExtra("name", Pname);
+                                Toast.makeText(getApplicationContext(), "Welcome " + Pname + " ", Toast.LENGTH_LONG).show();
                                 startActivity(nextPage);
                                 break;
                             }
 
                         }
-                        if(b == 0){
+                        if (b == 0) {
                             Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+
                     }
                 }
 
@@ -127,11 +126,6 @@ public class SignInActivity extends AppCompatActivity {
                 }
             });
 
-            nextPage = new Intent(SignInActivity.this,DoctorMain.class);
-            nextPage.putExtra("email",Pemail);
-            Pname="Dr Stephen Strange";
-            nextPage.putExtra("name",Pname);
-            startActivity(nextPage);
         }
         else{
             mFirebaseInstance = FirebaseDatabase.getInstance();
@@ -178,9 +172,14 @@ public class SignInActivity extends AppCompatActivity {
             });
 
         }
-
-
-
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
 }

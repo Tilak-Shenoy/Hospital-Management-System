@@ -43,7 +43,8 @@ public class SignupActivity extends AppCompatActivity {
                 Log.d("email",patient.getPatientEmail());
                 mFirebaseDatabase.child(userId).setValue(patient);
                 Intent intent= new Intent(SignupActivity.this,patientMain.class);
-             //   intent.putExtra("patient",  patient);
+                intent.putExtra("name",na);
+                intent.putExtra("email",em);
                 startActivity(intent);
             }
         });

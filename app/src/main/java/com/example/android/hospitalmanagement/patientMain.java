@@ -84,6 +84,7 @@ public class patientMain extends AppCompatActivity {
                 Intent i = new Intent(patientMain.this,PatientActivity.class);
                 i.putExtra("Appointments",appt);
                 i.putExtra("email",email);
+                i.putExtra("state","past");
                 i.putExtra("name",name);
                 startActivity(i);
 
@@ -147,6 +148,7 @@ public class patientMain extends AppCompatActivity {
                 Intent i = new Intent(patientMain.this,PatientActivity.class);
                 i.putExtra("Appointments",appt);
                 i.putExtra("email",email);
+                i.putExtra("state","scheduled");
                 i.putExtra("name",name);
                 startActivity(i);
 

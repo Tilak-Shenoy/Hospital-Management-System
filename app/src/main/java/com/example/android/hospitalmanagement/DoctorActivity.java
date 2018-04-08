@@ -17,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -40,12 +43,20 @@ public class DoctorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor);
-        getSupportActionBar().setTitle("Dr Strange");
+        String state= (String) getIntent().getExtras().get("state");
+        if(state.equals("past"))
+            getSupportActionBar().setTitle("Past Appointments");
+        else if (state.equals("scheduled"))
+            getSupportActionBar().setTitle("Scheduled Appointments");
 
         ListView list=(ListView) findViewById(R.id.container);
 
         Intent i = getIntent();
         final ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
+        if(appointments.isEmpty()){
+            TextView textView=(TextView) findViewById(R.id.noApp);
+            textView.setVisibility(View.VISIBLE);
+        }
         DoctorAdapter adapter=new DoctorAdapter(this,appointments);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

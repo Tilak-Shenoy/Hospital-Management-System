@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +32,8 @@ public class DoctorMain extends AppCompatActivity {
         Intent i = getIntent();
         email=i.getExtras().getString("email");
         name=i.getExtras().getString("name");
+        TextView textView=(TextView) findViewById(R.id.textView3);
+        textView.setText("Welcome "+name);
     }
     public void onClickPast(View v){
         mFirebaseInstance = FirebaseDatabase.getInstance();
@@ -75,6 +78,7 @@ public class DoctorMain extends AppCompatActivity {
                     }
                     Intent i = new Intent(DoctorMain.this,DoctorActivity.class);
                     i.putExtra("Appointments",appt);
+                    i.putExtra("state","past");
                     startActivity(i);
 
                 }
@@ -136,6 +140,7 @@ public class DoctorMain extends AppCompatActivity {
                     }
                     Intent i = new Intent(DoctorMain.this,DoctorActivity.class);
                     i.putExtra("Appointments",appt);
+                    i.putExtra("state","scheduled");
                     startActivity(i);
 
                 }

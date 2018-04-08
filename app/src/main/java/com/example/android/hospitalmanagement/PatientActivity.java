@@ -60,7 +60,11 @@ public class PatientActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
-        getSupportActionBar().setTitle("Appointments ");
+        String state= (String) getIntent().getExtras().getString("state");
+        if(state.equals("past"))
+            getSupportActionBar().setTitle("Past Appointments");
+        else if (state.equals("scheduled"))
+            getSupportActionBar().setTitle("Scheduled Appointments");
 
         ListView list=(ListView) findViewById(R.id.container);
 
