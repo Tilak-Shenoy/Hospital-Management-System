@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -44,9 +45,19 @@ public class DoctorActivity extends AppCompatActivity {
         ListView list=(ListView) findViewById(R.id.container);
 
         Intent i = getIntent();
-        ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
+        final ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
         DoctorAdapter adapter=new DoctorAdapter(this,appointments);
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(DoctorActivity.this,AppDetails.class);
+                intent.putExtra("Appointments",appointments);
+                intent.putExtra("app",(Appointment) appointments.get(i));
+                intent.putExtra("flag","doctor");
+                startActivity(intent);
+            }
+        });
     }
 
 }

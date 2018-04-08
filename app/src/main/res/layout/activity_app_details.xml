@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppDetails">
+
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cancel"
+        android:layout_alignStart="@+id/cancel"
+        android:layout_below="@+id/meds"
+        android:text="TextView"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/AppDept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AppName"
+        android:layout_alignStart="@+id/AppName"
+        android:layout_below="@+id/AppName"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/AppTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AppDept"
+        android:layout_alignStart="@+id/AppDept"
+        android:layout_below="@+id/AppDept"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/AppDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AppTime"
+        android:layout_alignStart="@+id/AppTime"
+        android:layout_below="@+id/AppTime"
+        android:layout_marginTop="27dp"
+        android:text="TextView"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/AppDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AppDate"
+        android:layout_alignStart="@+id/AppDate"
+        android:layout_below="@+id/AppDate"
+        android:layout_marginTop="21dp"
+        android:text="TextView"
+        android:textSize="23sp" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:onClick="onClick"
+        android:text="Cancel Appointment" />
+
+    <TextView
+        android:id="@+id/PatientName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AppDesc"
+        android:layout_alignStart="@+id/AppDesc"
+        android:layout_alignTop="@+id/AppDesc"
+        android:layout_marginTop="53dp"
+        android:text="TextView"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/med"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/AppDesc"
+        android:layout_alignStart="@+id/AppDesc"
+        android:layout_alignTop="@+id/AppDesc"
+        android:layout_marginTop="99dp"
+        android:text="TextView"
+        android:textSize="23sp" />
+
+    <Button
+        android:id="@+id/meds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/cancel"
+        android:layout_toRightOf="@+id/cancel"
+        android:onClick="prescribe"
+        android:text="Prescribe" />
+
+</RelativeLayout>

@@ -31,7 +31,7 @@ public class SignInActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseInstance;
     String userId;
     public static String Pname,Pemail,Ppass;
-    public static Patient p = new Patient();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,10 +83,51 @@ public class SignInActivity extends AppCompatActivity {
             nextPage.putExtra("name",Pname);
             startActivity(nextPage);
         }
-        else if( email.equals("drstrange@hosp.com") & password.equals( "marvel")){
+        else if( email.substring(0,1).equals("dr")){
+            mFirebaseInstance = FirebaseDatabase.getInstance();
+            mFirebaseDatabase = mFirebaseInstance.getReference("doctors");
+
+            Query query = mFirebaseDatabase.orderByChild("email").equalTo(email);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        int b = 0;
+                        for (DataSnapshot issue: dataSnapshot.getChildren()) {
+                            Pname = (String) issue.child("name").getValue();
+                            Pemail = (String) issue.child("email").getValue();
+                            Ppass = (String) issue.child("passoword").getValue();
+                            if(password.equals(Ppass)){
+                                b = 1;
+                                Intent nextPage;
+                                nextPage = new Intent(SignInActivity.this,DoctorMain.class);
+                                nextPage.putExtra("email",Pemail);
+                                nextPage.putExtra("name",Pname);
+                                Toast.makeText(getApplicationContext(),"Welcome "+Pname+" ",Toast.LENGTH_LONG).show();
+                                startActivity(nextPage);
+                                break;
+                            }
+
+                        }
+                        if(b == 0){
+                            Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(), "Connection Error", Toast.LENGTH_LONG).show();
+                }
+            });
+
             nextPage = new Intent(SignInActivity.this,DoctorMain.class);
             nextPage.putExtra("email",Pemail);
-            Pname="Dr Strange";
+            Pname="Dr Stephen Strange";
             nextPage.putExtra("name",Pname);
             startActivity(nextPage);
         }
@@ -107,9 +148,7 @@ public class SignInActivity extends AppCompatActivity {
                             Ppass = (String) issue.child("patientPass").getValue();
                             if(password.equals(Ppass)){
                                 b = 1;
-                                p.setPass(Ppass);
-                                p.setPatientEmail(Pemail);
-                                p.setPatientname(Pname);
+
                                 Intent nextPage;
                                 nextPage = new Intent(SignInActivity.this,patientMain.class);
                                 nextPage.putExtra("email",Pemail);

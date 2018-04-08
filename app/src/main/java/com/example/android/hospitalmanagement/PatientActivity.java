@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -63,10 +64,19 @@ public class PatientActivity extends AppCompatActivity {
         ListView list=(ListView) findViewById(R.id.container);
 
         Intent i = getIntent();
-        ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
+        final ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
         PatientAdapter adapter=new PatientAdapter(this,appointments);
         list.setAdapter(adapter);
-
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(PatientActivity.this,AppDetails.class);
+                intent.putExtra("Appointments",appointments);
+                intent.putExtra("app",(Appointment) appointments.get(i));
+                intent.putExtra("flag","patient");
+                startActivity(intent);
+            }
+        });
     }
 
 

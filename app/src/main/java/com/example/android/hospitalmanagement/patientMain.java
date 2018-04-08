@@ -64,7 +64,7 @@ public class patientMain extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if(cdate.before(curr)){
-                            Appointment app = new Appointment(doctorName,date,timeSlot,dept,description,email);
+                            Appointment app = new Appointment(doctorName,name,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
                             appt.add(app);
                         }
@@ -110,6 +110,12 @@ public class patientMain extends AppCompatActivity {
                         dept = (String) issue.child("dept").getValue();
                         Date curr = Calendar.getInstance().getTime();
                         SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+                        String cu = df.format(curr);
+                        try {
+                            curr=df.parse(cu);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                         Date cdate = null;
 
                         try {
@@ -118,7 +124,7 @@ public class patientMain extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if(cdate.after(curr)){
-                            Appointment app = new Appointment(doctorName,date,timeSlot,dept,description,email);
+                            Appointment app = new Appointment(doctorName,name,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
                             appt.add(app);
                         }
@@ -142,6 +148,8 @@ public class patientMain extends AppCompatActivity {
 
     public void onClick(View v){
         Intent i = new Intent(patientMain.this, BookAppointment.class);
+        i.putExtra("email",email);
+        i.putExtra("name",name);
         startActivity(i);
     }
 }

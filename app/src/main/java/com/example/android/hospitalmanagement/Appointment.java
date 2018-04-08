@@ -9,14 +9,16 @@ import java.util.Date;
 
 public class Appointment implements Serializable {
     private String doctorName;
+    private String patientName;
     private String date;
     private long timeSlot;
     private String description;
     private  String dept;
     private String email;
 
-    public Appointment(String doctorName,String date, long time, String dept,String descrip,String email){
+    public Appointment(String doctorName,String patientName,String date, long time, String dept,String descrip,String email){
         this.doctorName = doctorName;
+        this.patientName = patientName;
         this.date = date;
         this.timeSlot = time;
         this.description = descrip;
@@ -26,6 +28,7 @@ public class Appointment implements Serializable {
     }
 
     public String getName() {return doctorName;}
+    public String getPatientName() {return patientName;}
     public String getDate() {return date;}
     public String getDescrip() {return description;}
     public long getTime() {return timeSlot;}

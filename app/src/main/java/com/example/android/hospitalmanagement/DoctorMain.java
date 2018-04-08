@@ -44,6 +44,7 @@ public class DoctorMain extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     ArrayList<Appointment> appt = new ArrayList<>();
                     String doctorName;
+                    String pName;
                     String date;
                     long timeSlot;
                     String description;
@@ -51,6 +52,7 @@ public class DoctorMain extends AppCompatActivity {
                     String email;
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
                         date = (String) issue.child("date").getValue();
+                        pName = (String) issue.child("patientName").getValue();
                         description = (String) issue.child("descrip").getValue();
                         email = (String) issue.child("email").getValue();
                         doctorName = (String) issue.child("name").getValue();
@@ -65,13 +67,13 @@ public class DoctorMain extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if(cdate.before(curr)){
-                            Appointment app = new Appointment(doctorName,date,timeSlot,dept,description,email);
+                            Appointment app = new Appointment(doctorName,pName,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
                             appt.add(app);
                         }
 
                     }
-                    Intent i = new Intent(DoctorMain.this,PatientActivity.class);
+                    Intent i = new Intent(DoctorMain.this,DoctorActivity.class);
                     i.putExtra("Appointments",appt);
                     startActivity(i);
 
@@ -98,12 +100,14 @@ public class DoctorMain extends AppCompatActivity {
                     ArrayList<Appointment> appt = new ArrayList<>();
                     String doctorName;
                     String date;
+                    String pName;
                     long timeSlot;
                     String description;
                     String dept;
                     String email;
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
                         date = (String) issue.child("date").getValue();
+                        pName = (String) issue.child("patientName").getValue();
                         description = (String) issue.child("descrip").getValue();
                         email = (String) issue.child("email").getValue();
                         doctorName = (String) issue.child("name").getValue();
@@ -112,14 +116,19 @@ public class DoctorMain extends AppCompatActivity {
                         Date curr = Calendar.getInstance().getTime();
                         SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
                         Date cdate = null;
-
+                        String cu = df.format(curr);
+                        try {
+                            curr=df.parse(cu);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                         try {
                             cdate = df.parse(date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
                         if(cdate.after(curr)){
-                            Appointment app = new Appointment(doctorName,date,timeSlot,dept,description,email);
+                            Appointment app = new Appointment(doctorName,pName,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
                             appt.add(app);
                         }
