@@ -40,8 +40,10 @@ public class patientMain extends AppCompatActivity {
         mFirebaseDatabase.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+                ArrayList<Appointment> appt = new ArrayList<>();
+
                 if (dataSnapshot.exists()) {
-                    ArrayList<Appointment> appt = new ArrayList<>();
                     String doctorName;
                     String date;
                     long timeSlot;
@@ -70,11 +72,12 @@ public class patientMain extends AppCompatActivity {
                         }
 
                     }
-                    Intent i = new Intent(patientMain.this,PatientActivity.class);
-                    i.putExtra("Appointments",appt);
-                    startActivity(i);
 
                 }
+                Intent i = new Intent(patientMain.this,PatientActivity.class);
+                i.putExtra("Appointments",appt);
+                startActivity(i);
+
             }
 
             @Override
@@ -93,8 +96,8 @@ public class patientMain extends AppCompatActivity {
         mFirebaseDatabase.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Appointment> appt = new ArrayList<>();
                 if (dataSnapshot.exists()) {
-                    ArrayList<Appointment> appt = new ArrayList<>();
                     String doctorName;
                     String date;
                     long timeSlot;
@@ -130,11 +133,12 @@ public class patientMain extends AppCompatActivity {
                         }
 
                     }
-                    Intent i = new Intent(patientMain.this,PatientActivity.class);
-                    i.putExtra("Appointments",appt);
-                    startActivity(i);
 
                 }
+                Intent i = new Intent(patientMain.this,PatientActivity.class);
+                i.putExtra("Appointments",appt);
+                startActivity(i);
+
             }
 
             @Override
@@ -151,5 +155,11 @@ public class patientMain extends AppCompatActivity {
         i.putExtra("email",email);
         i.putExtra("name",name);
         startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(patientMain.this,SignInActivity.class));
     }
 }
