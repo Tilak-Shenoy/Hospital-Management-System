@@ -4,9 +4,10 @@
 * This appplicaton is an Cloud Management system for medical data visualisation and making life easier in hospitals.
 
 ## Contributing
+- Maintained by [Nachiket Naganure](https://github.com/NachiketUN),[Tilak-Shenoy](https://github.com/Tilak-Shenoy) and Sunitha Selvan. 
 - The repository is open to contribution from all interested developers. Kindly send us Pull Requests with explanation as to what changes you have done.
 - Also, you can write to us by opening an [Issue](https://github.com/Tilak-Shenoy/Hospital-Management-System/issues) and also solve a current issue if possible.
-- This project is an improved version of the Cloud-EHR project by [salman-bhai](https://github.com/salman-bhai).
+- This project was inspired by the Cloud-EHR project by [salman-bhai](https://github.com/salman-bhai).
 - This repository is created by [Tilak-Shenoy](https://github.com/Tilak-Shenoy)
 
 ## Documentation
@@ -41,6 +42,7 @@
 - MedicinesInfo table contains:
                        name and
                        price
+- This project uses Firebase Realtime Database to store all the info.
 
 
 ## License
