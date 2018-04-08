@@ -34,33 +34,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PatientActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-   // private SectionsPagerAdapter mSectionsPagerAdapter;
-    private DatabaseReference mFirebaseDatabase;
-    private FirebaseDatabase mFirebaseInstance;
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
-    private TabLayout tabLayout;
-
-
-
     static String email,name;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
-        String state= (String) getIntent().getExtras().getString("state");
+
+        String state= getIntent().getExtras().getString("state");
+
         if(state.equals("past"))
             getSupportActionBar().setTitle("Past Appointments");
         else if (state.equals("scheduled"))
@@ -73,12 +56,15 @@ public class PatientActivity extends AppCompatActivity {
         name = i.getExtras().getString("name");
         final ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
         Log.d("LIST",appointments.toString());
+
         if(!appointments.isEmpty()) {
+
             PatientAdapter adapter = new PatientAdapter(this, appointments);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                     Intent intent = new Intent(PatientActivity.this, AppDetails.class);
                     intent.putExtra("Appointments", appointments);
                     intent.putExtra("app", (Appointment) appointments.get(i));
@@ -88,6 +74,7 @@ public class PatientActivity extends AppCompatActivity {
             });
         }
         else{
+
             TextView no=(TextView) findViewById(R.id.No);
             no.setVisibility(View.VISIBLE);
         }
@@ -96,6 +83,7 @@ public class PatientActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         Intent i=new Intent(PatientActivity.this,patientMain.class);
         i.putExtra("name",name);
         i.putExtra("email",email);

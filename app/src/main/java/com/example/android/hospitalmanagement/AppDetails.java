@@ -26,13 +26,15 @@ package com.example.android.hospitalmanagement;
 public class AppDetails extends AppCompatActivity {
     ArrayList appointments;
     TextView name,date,time,dept,desc,Pname;
-    String DelDate,flag;
+    String DelDate,flag,state;
     Appointment appointment;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     Button prescribe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_details);
 
@@ -43,17 +45,20 @@ public class AppDetails extends AppCompatActivity {
         desc= (TextView) findViewById(R.id.AppDesc);
         Pname=(TextView) findViewById(R.id.PatientName);
         Button cancel=(Button) findViewById(R.id.cancel);
-         prescribe= (Button) findViewById(R.id.meds);
+        prescribe= (Button) findViewById(R.id.meds);
 
         flag=getIntent().getExtras().getString("flag");
         appointments= (ArrayList) getIntent().getSerializableExtra("Appointments");
         appointment= (Appointment) getIntent().getSerializableExtra("app");
+        state=getIntent().getExtras().getString("state");
+
         name.setText(appointment.getName());
         DelDate = appointment.getDate();
         date.setText(DelDate);
         Pname.setText(appointment.getPatientName());
-      //  time.setText("2:00pm");
+
         Log.d("time", String.valueOf(appointment.getTime()));
+
         if(appointment.getTime()==4)
             time.setText("4:00 pm");
         else if(appointment.getTime()==5)
@@ -66,18 +71,23 @@ public class AppDetails extends AppCompatActivity {
         Date curr = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
         String cu = df.format(curr);
+
         try {
             curr=df.parse(cu);
-        } catch (ParseException e) {
+        }
+        catch (ParseException e) {
             e.printStackTrace();
         }
+
         Date cdate = null;
 
         try {
             cdate = df.parse(appointment.getDate());
-        } catch (ParseException e) {
+        }
+        catch (ParseException e) {
             e.printStackTrace();
         }
+
         if(cdate.before(curr)){
             cancel.setVisibility(View.INVISIBLE);
         }
@@ -93,14 +103,15 @@ public class AppDetails extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 TextView med;
                 String meds="No Medication Prescribed";
-                if (dataSnapshot.exists()) {
 
+                if (dataSnapshot.exists()) {
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
                         meds= (String) issue.child("patientMedication").getValue();
                     }
 
 
                 }
+
                 med=(TextView) findViewById(R.id.med);
                 med.setText(meds);
             }
@@ -115,20 +126,23 @@ public class AppDetails extends AppCompatActivity {
 
     }
     public void onClick(View v){
+
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mFirebaseDatabase = mFirebaseInstance.getReference("appointments");
-
         mFirebaseDatabase.orderByChild("date").equalTo(DelDate).addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
 
+                if (dataSnapshot.exists()) {
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
                         issue.getRef().removeValue();
                     }
-                    Intent intent=new Intent(AppDetails.this,PatientActivity.class);
+
                     appointments.remove(appointment);
+                    Intent intent=new Intent(AppDetails.this,PatientActivity.class);
                     intent.putExtra("Appointments",appointments);
+                    intent.putExtra("state",state);
                     startActivity(intent);
 
                 }
@@ -136,22 +150,16 @@ public class AppDetails extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
                 Log.d("true","false");
-
             }
         });
-
-
-
-
     }
 
     public void prescribe(View v){
         Intent it=new Intent(AppDetails.this,DoctorPrescription.class);
         it.putExtra("currentAppt",appointment);
         it.putExtra("Appointments",appointments);
-
+        it.putExtra("state",state);
         startActivity(it);
     }
 

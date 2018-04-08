@@ -151,7 +151,6 @@ public class SignInActivity extends AppCompatActivity {
                                 nextPage.putExtra("name",Pname);
                                 Toast.makeText(getApplicationContext(),"Welcome "+Pname+" ",Toast.LENGTH_LONG).show();
                                 startActivity(nextPage);
-                                break;
                             }
 
                         }

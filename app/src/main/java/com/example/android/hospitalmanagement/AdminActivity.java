@@ -34,28 +34,31 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.admin);
         getSupportActionBar().setTitle("Fortis Admin Page");
     }
+
     public void onClickRecords(View v){
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mFirebaseDatabase = mFirebaseInstance.getReference("doctors");
 
         Query query = mFirebaseDatabase.orderByChild("i").equalTo(1);
+
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+
                     ArrayList arr = new ArrayList<String>();
                     String Pemail="";
+
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
                         Pemail = (String) issue.child("docName").getValue();
                         arr.add(Pemail);
 
                     }
+
                     Intent nextPage = new Intent(AdminActivity.this,Records.class);
                     nextPage.putStringArrayListExtra("arr",arr);
                     startActivity(nextPage);
-
                 }
-
             }
 
 

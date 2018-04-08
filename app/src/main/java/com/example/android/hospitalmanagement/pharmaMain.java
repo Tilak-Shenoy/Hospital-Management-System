@@ -39,7 +39,9 @@ public class pharmaMain extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists()) {
+
                     ArrayList arr = new ArrayList<String>();
                     String Pemail="";
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
@@ -48,6 +50,7 @@ public class pharmaMain extends AppCompatActivity {
                         arr.add(me);
 
                     }
+
                     Intent nextPage;
                     nextPage = new Intent(pharmaMain.this,Pharmacy.class);
                     nextPage.putStringArrayListExtra("arr",arr);
@@ -56,6 +59,7 @@ public class pharmaMain extends AppCompatActivity {
 
                 }
                 else{
+
                     Toast.makeText(getApplicationContext(), "No Medication found for the patient", Toast.LENGTH_LONG).show();
                 }
             }

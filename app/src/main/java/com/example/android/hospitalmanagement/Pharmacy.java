@@ -17,6 +17,7 @@ public class Pharmacy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy);
         getSupportActionBar().setTitle("Pharmacy Assistant Profile");
+
         Intent i = getIntent();
         email = i.getExtras().getString("email");
         ArrayList<String> test = i.getStringArrayListExtra("arr");

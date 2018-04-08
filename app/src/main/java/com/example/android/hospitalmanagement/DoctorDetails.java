@@ -15,14 +15,17 @@ import static android.app.PendingIntent.getActivity;
 public class DoctorDetails  extends AppCompatActivity {
     Button signUp;
     EditText name, email, pass,dept ;
-    String na,em,pa,dp;
+    String docName,docEmail,docPass,docDept;
     private String userId;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_details);
+
         name = (EditText) findViewById(R.id.name);
         email = (EditText) findViewById(R.id.email);
         pass = (EditText) findViewById(R.id.password);
@@ -34,20 +37,24 @@ public class DoctorDetails  extends AppCompatActivity {
 
         signUp=(Button) findViewById(R.id.submit);
         signUp.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
 
-                na = name.getText().toString();
-                em = email.getText().toString();
-                pa = pass.getText().toString();
-                dp = dept.getText().toString();
+                docName = name.getText().toString();
+                docEmail = email.getText().toString();
+                docPass = pass.getText().toString();
+                docDept = dept.getText().toString();
+
                 userId = mFirebaseDatabase.push().getKey();
-                Doctor doc = new Doctor(na,em,pa,dp,1);
+
+                Doctor doc = new Doctor(docName,docEmail,docPass,docDept,1);
+
                 Log.d("email",doc.getEmail());
                 mFirebaseDatabase.child(userId).setValue(doc);
+
                 Intent intent= new Intent(DoctorDetails.this,AdminActivity.class);
                 startActivity(intent);
-
             }
         });
 

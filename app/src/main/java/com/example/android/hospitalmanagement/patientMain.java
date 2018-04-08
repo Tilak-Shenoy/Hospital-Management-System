@@ -26,8 +26,10 @@ public class patientMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_main);
+
         Intent i = getIntent();
         email=i.getExtras().getString("email");
         name=i.getExtras().getString("name");
@@ -35,6 +37,7 @@ public class patientMain extends AppCompatActivity {
 
     }
     public void onClickPast(View v){
+
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mFirebaseDatabase = mFirebaseInstance.getReference("appointments");
 
@@ -45,50 +48,50 @@ public class patientMain extends AppCompatActivity {
                 ArrayList<Appointment> appt = new ArrayList<>();
 
                 if (dataSnapshot.exists()) {
-                    String doctorName;
-                    String date;
+
+                    String doctorName,date,description,dept,email;
                     long timeSlot;
-                    String description;
-                    String dept;
-                    String email;
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
+
                         date = (String) issue.child("date").getValue();
                         description = (String) issue.child("descrip").getValue();
                         email = (String) issue.child("email").getValue();
                         doctorName = (String) issue.child("name").getValue();
                         timeSlot = (long) issue.child("time").getValue();
                         dept = (String) issue.child("dept").getValue();
-                        Date curr = new Date();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
+                        Date curr = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+                        String cu = df.format(curr);
+
                         Date cdate = null;
-                        /*String cu = df.format(curr);
+
                         try {
                             curr=df.parse(cu);
                         } catch (ParseException e) {
                             e.printStackTrace();
-                        }*/
+                        }
+
                         try {
                             cdate = df.parse(date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        Toast.makeText(getApplicationContext(),"Current="+curr.toString()+"cDate="+cdate.toString(),Toast.LENGTH_LONG);
+
                         if(cdate.before(curr)){
                             Appointment app = new Appointment(doctorName,name,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
                             appt.add(app);
                         }
-
                     }
-
                 }
+
                 Intent i = new Intent(patientMain.this,PatientActivity.class);
                 i.putExtra("Appointments",appt);
                 i.putExtra("email",email);
                 i.putExtra("state","past");
                 i.putExtra("name",name);
                 startActivity(i);
-
             }
 
             @Override
@@ -101,53 +104,54 @@ public class patientMain extends AppCompatActivity {
     }
 
     public void onClickPresent(View v){
+
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mFirebaseDatabase = mFirebaseInstance.getReference("appointments");
 
         mFirebaseDatabase.orderByChild("email").equalTo(email).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 ArrayList<Appointment> appt = new ArrayList<>();
                 if (dataSnapshot.exists()) {
-                    String doctorName;
-                    String date;
+
+                    String doctorName,date,description,dept,email;
                     long timeSlot;
-                    String description;
-                    String dept;
-                    String email;
+
                     for (DataSnapshot issue : dataSnapshot.getChildren()) {
+
                         date = (String) issue.child("date").getValue();
                         description = (String) issue.child("descrip").getValue();
                         email = (String) issue.child("email").getValue();
                         doctorName = (String) issue.child("name").getValue();
                         timeSlot = (long) issue.child("time").getValue();
                         dept = (String) issue.child("dept").getValue();
-                        Date curr = new Date();
-                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                        /*String cu = df.format(curr);
+
+                        Date curr = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+                        Date cdate = null;
+                        String cu = df.format(curr);
+
                         try {
                             curr=df.parse(cu);
                         } catch (ParseException e) {
                             e.printStackTrace();
-                        }*/
-                        Date cdate = null;
+                        }
 
                         try {
                             cdate = df.parse(date);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        Log.d("Test","Cur"+curr.toString()+"c"+cdate.toString());
+
                         if(cdate.after(curr)){
-                            Toast.makeText(getApplicationContext(),"Current="+curr.toString()+"cDate="+cdate.toString(),Toast.LENGTH_LONG);
                             Appointment app = new Appointment(doctorName,name,date,timeSlot,dept,description,email);
                             Log.d("asd",app.getDescrip());
                             appt.add(app);
                         }
-
                     }
-
                 }
+
                 Intent i = new Intent(patientMain.this,PatientActivity.class);
                 i.putExtra("Appointments",appt);
                 i.putExtra("email",email);

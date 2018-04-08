@@ -20,21 +20,23 @@ import java.util.ArrayList;
 public class DoctorPrescription extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
+
     EditText Meds,Comment;
-    String email;
+    String email,state;
     ArrayList list;
     private String userId;
-    Appointment app;
+    private Appointment app;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doc_prescription);
-        app= (Appointment) getIntent().getSerializableExtra("currentAppt");
         Meds = (EditText) findViewById(R.id.editText);
-
-
         Comment = (EditText) findViewById(R.id.editText2);
+
+        app= (Appointment) getIntent().getSerializableExtra("currentAppt");
         list= (ArrayList) getIntent().getSerializableExtra("Appointments");
+        state=getIntent().getExtras().getString("state");
 
     }
     public void onClick(View V){
@@ -42,7 +44,8 @@ public class DoctorPrescription extends AppCompatActivity {
         String comment = Comment.getText().toString();
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
-        // get reference to 'users' node
+
+        // get reference to 'Meds' node
         mFirebaseDatabase = mFirebaseInstance.getReference("Meds");
         userId = mFirebaseDatabase.push().getKey();
         Medication m = new Medication(app.getEmail(),meds,comment,app.getDate());
@@ -51,6 +54,8 @@ public class DoctorPrescription extends AppCompatActivity {
         Intent intent= new Intent(DoctorPrescription.this,DoctorActivity.class);
         //   intent.putExtra("patient",  patient);
         intent.putExtra("Appointments",list);
+        intent.putExtra("state",state);
+        Log.d("state",state);
         startActivity(intent);
 
     }
