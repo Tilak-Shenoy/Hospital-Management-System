@@ -42,6 +42,7 @@ public class BookAppointment extends AppCompatActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_appointment);
+        getSupportActionBar().setTitle("Fortis Care");
 
         Pname = getIntent().getExtras().getString("name");
         Pemail = getIntent().getExtras().getString("email");
@@ -93,7 +94,7 @@ public class BookAppointment extends AppCompatActivity implements AdapterView.On
         mFirebaseDatabase = mFirebaseInstance.getReference("appointments");
         userId = mFirebaseDatabase.push().getKey();
         mFirebaseDatabase.child(userId).setValue(app);
-        Toast.makeText(this,"Appointment Created!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Appointment Created!",Toast.LENGTH_LONG).show();
         Intent i = new Intent(BookAppointment.this,patientMain.class);
         i.putExtra("email",Pemail);
         i.putExtra("name",Pname);

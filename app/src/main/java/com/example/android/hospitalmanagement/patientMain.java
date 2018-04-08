@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class patientMain extends AppCompatActivity {
-    String name,email;
+    static String name,email;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
 
@@ -31,6 +31,7 @@ public class patientMain extends AppCompatActivity {
         Intent i = getIntent();
         email=i.getExtras().getString("email");
         name=i.getExtras().getString("name");
+        getSupportActionBar().setTitle("Fortis Care : "+name);
 
     }
     public void onClickPast(View v){
@@ -60,6 +61,12 @@ public class patientMain extends AppCompatActivity {
                         Date curr = Calendar.getInstance().getTime();
                         SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
                         Date cdate = null;
+                        String cu = df.format(curr);
+                        try {
+                            curr=df.parse(cu);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                         try {
                             cdate = df.parse(date);
                         } catch (ParseException e) {
@@ -76,6 +83,8 @@ public class patientMain extends AppCompatActivity {
                 }
                 Intent i = new Intent(patientMain.this,PatientActivity.class);
                 i.putExtra("Appointments",appt);
+                i.putExtra("email",email);
+                i.putExtra("name",name);
                 startActivity(i);
 
             }
@@ -137,6 +146,8 @@ public class patientMain extends AppCompatActivity {
                 }
                 Intent i = new Intent(patientMain.this,PatientActivity.class);
                 i.putExtra("Appointments",appt);
+                i.putExtra("email",email);
+                i.putExtra("name",name);
                 startActivity(i);
 
             }

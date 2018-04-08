@@ -53,18 +53,20 @@ public class PatientActivity extends AppCompatActivity {
 
 
 
-
-    String email,name;
+    static String email,name;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
+        getSupportActionBar().setTitle("Appointments ");
 
         ListView list=(ListView) findViewById(R.id.container);
 
         Intent i = getIntent();
+        email = i.getExtras().getString("email");
+        name = i.getExtras().getString("name");
         final ArrayList appointments= (ArrayList) i.getSerializableExtra("Appointments");
         Log.d("LIST",appointments.toString());
         if(!appointments.isEmpty()) {

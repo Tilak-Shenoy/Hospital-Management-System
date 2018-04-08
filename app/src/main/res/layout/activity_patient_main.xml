@@ -24,7 +24,7 @@
         android:layout_below="@+id/imageView3"
         android:layout_marginTop="76dp"
         android:gravity="center"
-        android:text="Welcome to Oak Crest Hospital"
+        android:text="Welcome to Fortis Care Hospital"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="22sp" />
 
