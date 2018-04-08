@@ -34,10 +34,36 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.admin);
     }
     public void onClickRecords(View v){
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+        mFirebaseDatabase = mFirebaseInstance.getReference("doctors");
 
-        Intent nextPage;
-        nextPage = new Intent(AdminActivity.this,Records.class);
-        startActivity(nextPage);
+        Query query = mFirebaseDatabase.orderByChild("i").equalTo(1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    ArrayList arr = new ArrayList<String>();
+                    String Pemail="";
+                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                        Pemail = (String) issue.child("docName").getValue();
+                        arr.add(Pemail);
+
+                    }
+                    Intent nextPage = new Intent(AdminActivity.this,Records.class);
+                    nextPage.putStringArrayListExtra("arr",arr);
+                    startActivity(nextPage);
+
+                }
+
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), "Connection Error", Toast.LENGTH_LONG).show();
+            }
+        });
+
 
     }
     public void onClickAddDoc(View v){

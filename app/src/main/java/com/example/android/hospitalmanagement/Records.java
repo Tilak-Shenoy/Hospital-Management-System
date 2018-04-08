@@ -12,7 +12,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class Records extends AppCompatActivity {
-
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,16 +22,11 @@ public class Records extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Pharmacy Assistant Profile");
         Intent i = getIntent();
-        ArrayList<String> doctors = new ArrayList<String>();
-        doctors.add("Dr Stephen Strange");
-        doctors.add("Dr Lacy Windham");
-        doctors.add("Dr Batra");
-        doctors.add("Dr Tom Hardy");
-        doctors.add("Dr Bhausingh");
-        doctors.add("Dr Srinivas Iyer");
+        ArrayList<String> test = i.getStringArrayListExtra("arr");
 
         ListView docList = (ListView) findViewById(R.id.docList);
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,doctors);
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,test);
         docList.setAdapter(adapter);
     }
 }
+

@@ -83,7 +83,8 @@ public class SignInActivity extends AppCompatActivity {
             nextPage.putExtra("name",Pname);
             startActivity(nextPage);
         }
-        else if( email.substring(0,1).equals("dr")){
+        else if( email.substring(0,2).equals("dr")){
+            Log.d("docjkfjklsdjfksjdflkjsldf","sdjfklhd");
             mFirebaseInstance = FirebaseDatabase.getInstance();
             mFirebaseDatabase = mFirebaseInstance.getReference("doctors");
 
@@ -94,9 +95,9 @@ public class SignInActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         int b = 0;
                         for (DataSnapshot issue: dataSnapshot.getChildren()) {
-                            Pname = (String) issue.child("name").getValue();
+                            Pname = (String) issue.child("docName").getValue();
                             Pemail = (String) issue.child("email").getValue();
-                            Ppass = (String) issue.child("passoword").getValue();
+                            Ppass = (String) issue.child("password").getValue();
                             if(password.equals(Ppass)){
                                 b = 1;
                                 Intent nextPage;
