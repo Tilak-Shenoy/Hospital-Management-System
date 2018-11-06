@@ -1,7 +1,7 @@
 # Hospital Management System
 
 ## About
-* This appplicaton is an Cloud Management system for medical data visualisation and making life easier in hospitals.
+* This appplicaton is a Cloud Management system for medical data visualisation and making life easier in hospitals.
 
 ## Contributing
 - Maintained by [Tilak-Shenoy](https://github.com/Tilak-Shenoy), [Nachiket Naganure](https://github.com/NachiketUN) and [Sunitha Selvan](https://github.com/isunitha98selvan). 
